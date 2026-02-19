@@ -36,8 +36,8 @@ jobs:
           security import ./certs/lifeagenda_nopass.p12 -P "test123" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH login.keychain-db
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/lifeagenda.mobileprovision
-          echo "$PROVISIONING_PROFILE_WIDGET_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/lifeagenda_widget.mobileprovision
+          cp profiles/lifeagenda.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+cp profiles/lifeagenda_widget.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
       - name: Build and Upload to TestFlight
         env:
           APP_STORE_API_KEY_ID: ${{ secrets.APP_STORE_API_KEY_ID }}
