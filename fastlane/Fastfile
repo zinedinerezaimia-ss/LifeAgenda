@@ -29,7 +29,7 @@ platform :ios do
         signingStyle: "manual",
         provisioningProfiles: {
           "com.rezaimia.LifeAgenda"        => "LifeAgenda AppStore",
-          "com.rezaimia.LifeAgenda.widget" => "LifeAgendaWidget AppStore"
+          "com.rezaimia.LifeAgendaWidget" => "LifeAgendaWidget AppStore"
         }
       },
       xcargs: "DEVELOPMENT_TEAM=J875R59LND CODE_SIGN_IDENTITY='Apple Distribution' CODE_SIGN_STYLE=Manual 'com.rezaimia.LifeAgenda:PROVISIONING_PROFILE_SPECIFIER=LifeAgenda AppStore' 'com.rezaimia.LifeAgenda.widget:PROVISIONING_PROFILE_SPECIFIER=LifeAgendaWidget AppStore'"
