@@ -57,7 +57,7 @@ targets:
   LifeAgendaWidget:
     type: app-extension
     platform: iOS
-    bundleId: com.rezaimia.LifeAgenda.widget
+    bundleId: com.rezaimia.LifeAgendaWidget
     deploymentTarget: "16.0"
     sources:
       - path: LifeAgendaWidget
