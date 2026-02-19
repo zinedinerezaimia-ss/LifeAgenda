@@ -32,7 +32,7 @@ platform :ios do
           "com.rezaimia.LifeAgenda.widget" => "LifeAgendaWidget AppStore"
         }
       },
-      xcargs: "DEVELOPMENT_TEAM=J875R59LND CODE_SIGN_IDENTITY='Apple Distribution' CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='LifeAgenda AppStore'"
+      xcargs: "DEVELOPMENT_TEAM=J875R59LND CODE_SIGN_IDENTITY='Apple Distribution' CODE_SIGN_STYLE=Manual 'com.rezaimia.LifeAgenda:PROVISIONING_PROFILE_SPECIFIER=LifeAgenda AppStore' 'com.rezaimia.LifeAgenda.widget:PROVISIONING_PROFILE_SPECIFIER=LifeAgendaWidget AppStore'"
     )
     upload_to_testflight(
       api_key: api_key,
