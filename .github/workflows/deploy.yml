@@ -23,7 +23,7 @@ jobs:
           bundler-cache: true
       - name: Install Fastlane
         run: bundle install
-      - - name: Install certificate and provisioning profiles
+      - name: Install certificate and provisioning profiles
         env:
           PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
           PROVISIONING_PROFILE_WIDGET_BASE64: ${{ secrets.PROVISIONING_PROFILE_WIDGET_BASE64 }}
@@ -37,7 +37,6 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH login.keychain-db
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/lifeagenda.mobileprovision
-          echo "$PROVISIONING_PROFILE_WIDGET_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/lifeagenda_widget.mobileprovision Profiles/lifeagenda.mobileprovision
           echo "$PROVISIONING_PROFILE_WIDGET_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/lifeagenda_widget.mobileprovision
       - name: Build and Upload to TestFlight
         env:
