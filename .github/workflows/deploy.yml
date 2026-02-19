@@ -23,15 +23,8 @@ jobs:
           bundler-cache: false
       - name: Install Fastlane
         run: bundle install
-      - name: Install certificate and provisioning profiles
+      - name: Install provisioning profiles
         run: |
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-          security create-keychain -p "temp123" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "temp123" $KEYCHAIN_PATH
-          security import ./certs/lifeagenda_nopass.p12 -k $KEYCHAIN_PATH -T /usr/bin/codesign -T /usr/bin/security
-          security set-key-partition-list -S apple-tool:,apple: -s -k "temp123" $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH login.keychain-db
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp profiles/lifeagenda.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
           cp profiles/lifeagenda_widget.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
