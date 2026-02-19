@@ -12,10 +12,12 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
+
     increment_build_number(
       build_number: Time.now.strftime("%Y%m%d%H%M"),
       xcodeproj: "LifeAgenda.xcodeproj"
     )
+
     build_app(
       scheme: "LifeAgenda",
       export_method: "app-store",
@@ -23,12 +25,18 @@ platform :ios do
       clean: true,
       output_directory: "./build",
       output_name: "LifeAgenda.ipa",
+      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=J875R59LND PROVISIONING_PROFILE_SPECIFIER='LifeAgenda AppStore'",
       export_options: {
         method: "app-store",
         teamID: "J875R59LND",
-        signingStyle: "automatic"
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "com.rezaimia.LifeAgenda" => "LifeAgenda AppStore",
+          "com.rezaimia.LifeAgendaWidget" => "LifeAgendaWidget AppStore"
+        }
       }
     )
+
     upload_to_testflight(
       api_key: api_key,
       skip_waiting_for_build_processing: true,
