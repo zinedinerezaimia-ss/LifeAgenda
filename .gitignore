@@ -1,0 +1,25 @@
+## Xcode
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+*.xcuserdata
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+build/
+
+## Fastlane
+fastlane/app_store_connect_api_key.json
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+## Ruby
+vendor/bundle
+
+## macOS
+.DS_Store
+
+## Firebase
+GoogleService-Info.plist

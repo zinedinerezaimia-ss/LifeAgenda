@@ -1,0 +1,86 @@
+name: LifeAgenda
+options:
+  bundleIdPrefix: com.rezaimia
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: 5.9
+    MARKETING_VERSION: 1.0.0
+    CURRENT_PROJECT_VERSION: 1
+    DEVELOPMENT_TEAM: J875R59LND
+    CODE_SIGN_STYLE: Manual
+
+targets:
+  LifeAgenda:
+    type: application
+    platform: iOS
+    bundleId: com.rezaimia.LifeAgenda
+    deploymentTarget: "16.0"
+    sources:
+      - path: LifeAgenda
+    settings:
+      base:
+        INFOPLIST_FILE: LifeAgenda/Supporting/Info.plist
+        CODE_SIGN_IDENTITY: "iPhone Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda Distribution"
+        APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
+      configs:
+        Debug:
+          CODE_SIGN_IDENTITY: "iPhone Developer"
+          PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda Development"
+    entitlements:
+      path: LifeAgenda/Supporting/LifeAgenda.entitlements
+    dependencies:
+      - target: LifeAgendaWidget
+    info:
+      path: LifeAgenda/Supporting/Info.plist
+      properties:
+        CFBundleDisplayName: LifeAgenda
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIStatusBarStyle: UIStatusBarStyleLightContent
+        UIUserInterfaceStyle: Dark
+        NSLocationWhenInUseUsageDescription: "Pour calculer les horaires de prière selon votre position."
+        NSPhotoLibraryUsageDescription: "Pour analyser vos photos et générer un programme sportif personnalisé."
+        NSCameraUsageDescription: "Pour prendre des photos pour votre programme sportif."
+        UIBackgroundModes:
+          - background-fetch
+
+  LifeAgendaWidget:
+    type: app-extension
+    platform: iOS
+    bundleId: com.rezaimia.LifeAgenda.widget
+    deploymentTarget: "16.0"
+    sources:
+      - path: LifeAgendaWidget
+    settings:
+      base:
+        INFOPLIST_FILE: LifeAgendaWidget/Info.plist
+        CODE_SIGN_IDENTITY: "iPhone Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget Distribution"
+        APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
+      configs:
+        Debug:
+          CODE_SIGN_IDENTITY: "iPhone Developer"
+          PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget Development"
+    entitlements:
+      path: LifeAgendaWidget/LifeAgendaWidget.entitlements
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    info:
+      path: LifeAgendaWidget/Info.plist
+      properties:
+        CFBundleDisplayName: LifeAgendaWidget
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension

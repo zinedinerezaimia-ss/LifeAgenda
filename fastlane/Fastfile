@@ -1,0 +1,57 @@
+default_platform(:ios)
+
+platform :ios do
+  
+  desc "Build and push to TestFlight"
+  lane :beta do
+    # Incrémenter le build number
+    increment_build_number(
+      build_number: ENV["BUILD_NUMBER"] || Time.now.strftime("%Y%m%d%H%M")
+    )
+    
+    # Sync certs & profiles
+    match(
+      type: "appstore",
+      app_identifier: ["com.rezaimia.LifeAgenda", "com.rezaimia.LifeAgenda.widget"],
+      readonly: true
+    )
+    
+    # Build
+    build_app(
+      scheme: "LifeAgenda",
+      workspace: "LifeAgenda.xcworkspace",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.rezaimia.LifeAgenda"        => "LifeAgenda Distribution",
+          "com.rezaimia.LifeAgenda.widget" => "LifeAgendaWidget Distribution"
+        }
+      }
+    )
+    
+    # Upload TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      api_key_path: "fastlane/app_store_connect_api_key.json"
+    )
+    
+    # Notification Slack (optionnel)
+    # slack(message: "✅ LifeAgenda #{lane_context[SharedValues::BUILD_NUMBER]} uploadé sur TestFlight!")
+  end
+  
+  desc "Synchroniser les provisioning profiles"
+  lane :sync_profiles do
+    match(
+      type: "development",
+      app_identifier: ["com.rezaimia.LifeAgenda", "com.rezaimia.LifeAgenda.widget"],
+      readonly: false
+    )
+    match(
+      type: "appstore",
+      app_identifier: ["com.rezaimia.LifeAgenda", "com.rezaimia.LifeAgenda.widget"],
+      readonly: false
+    )
+  end
+  
+end

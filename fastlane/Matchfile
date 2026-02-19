@@ -1,0 +1,6 @@
+git_url("https://github.com/zinedinerezaimia-ss/certificates") # même repo que Iqra
+storage_mode("git")
+type("appstore")
+app_identifier(["com.rezaimia.LifeAgenda", "com.rezaimia.LifeAgenda.widget"])
+username("") # ton Apple ID
+team_id("J875R59LND")
