@@ -27,7 +27,7 @@ targets:
       base:
         INFOPLIST_FILE: LifeAgenda/Supporting/Info.plist
         CODE_SIGN_IDENTITY: "iPhone Distribution"
-        PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda AppStore"
         APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
       configs:
         Debug:
@@ -65,7 +65,7 @@ targets:
       base:
         INFOPLIST_FILE: LifeAgendaWidget/Info.plist
         CODE_SIGN_IDENTITY: "iPhone Distribution"
-        PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget Distribution"
+        PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget AppStore"
         APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
       configs:
         Debug:
