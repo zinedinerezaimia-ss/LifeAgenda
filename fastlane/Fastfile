@@ -25,7 +25,6 @@ platform :ios do
       clean: true,
       output_directory: "./build",
       output_name: "LifeAgenda.ipa",
-      xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='Apple Distribution' DEVELOPMENT_TEAM=J875R59LND PROVISIONING_PROFILE_SPECIFIER='LifeAgenda AppStore'",
       export_options: {
         method: "app-store",
         teamID: "J875R59LND",
