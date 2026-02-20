@@ -25,13 +25,11 @@ jobs:
         run: bundle install
       - name: Install certificate and provisioning profiles
         run: |
-          openssl pkcs12 -in certs/lifeagenda_nopass.p12 -passin pass:test123 -out /tmp/cert_key.pem -nodes -legacy
-          openssl pkcs12 -export -in /tmp/cert_key.pem -out /tmp/p12_final.p12 -passout pass:test123 -legacy
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           security create-keychain -p "temppass123" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "temppass123" $KEYCHAIN_PATH
-          security import /tmp/p12_final.p12 -P "test123" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import certs/lifeagenda_nopass.p12 -P "test123" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security set-key-partition-list -S apple-tool:,apple: -s -k "temppass123" $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH login.keychain-db
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
