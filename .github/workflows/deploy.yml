@@ -23,5 +23,10 @@ jobs:
           bundler-cache: false
       - name: Install Fastlane
         run: bundle install
+      - name: Install provisioning profiles
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp profiles/lifeagenda.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          cp profiles/lifeagenda_widget.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
       - name: Build and Upload to TestFlight
         run: bundle exec fastlane beta
