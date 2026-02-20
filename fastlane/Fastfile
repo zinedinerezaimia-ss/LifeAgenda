@@ -16,19 +16,18 @@ platform :ios do
       build_number: Time.now.strftime("%Y%m%d%H%M"),
       xcodeproj: "LifeAgenda.xcodeproj"
     )
-    sync_code_signing(
-      type: "appstore",
-      app_identifier: ["com.rezaimia.LifeAgenda", "com.rezaimia.LifeAgendaWidget"],
-      readonly: true,
-      api_key: api_key
-    )
     build_app(
       scheme: "LifeAgenda",
       export_method: "app-store",
       sdk: "iphoneos",
       clean: true,
       output_directory: "./build",
-      output_name: "LifeAgenda.ipa"
+      output_name: "LifeAgenda.ipa",
+      export_options: {
+        method: "app-store",
+        teamID: "J875R59LND",
+        signingStyle: "automatic"
+      }
     )
     upload_to_testflight(
       api_key: api_key,
