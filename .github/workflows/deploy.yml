@@ -23,10 +23,20 @@ jobs:
           bundler-cache: false
       - name: Install Fastlane
         run: bundle install
-      - name: Install provisioning profiles
+      - name: Install certificate and profiles
         run: |
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          KEYCHAIN_PASSWORD=$(openssl rand -base64 32)
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security import ./certs/lifeagenda_nopass.p12 -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH login.keychain-db
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp profiles/lifeagenda.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
           cp profiles/lifeagenda_widget.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
       - name: Build and Upload to TestFlight
         run: bundle exec fastlane beta
+      - name: Cleanup keychain
+        if: always()
+        run: security delete-keychain $RUNNER_TEMP/app-signing.keychain-db || true
