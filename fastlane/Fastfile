@@ -23,11 +23,14 @@ platform :ios do
       clean: true,
       output_directory: "./build",
       output_name: "LifeAgenda.ipa",
-      xcargs: "CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=J875R59LND",
       export_options: {
         method: "app-store",
         teamID: "J875R59LND",
-        signingStyle: "automatic"
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "com.rezaimia.LifeAgenda" => "LifeAgenda AppStore",
+          "com.rezaimia.LifeAgendaWidget" => "LifeAgendaWidget AppStore"
+        }
       }
     )
     upload_to_testflight(
