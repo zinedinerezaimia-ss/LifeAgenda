@@ -24,4 +24,7 @@ jobs:
       - name: Install Fastlane
         run: bundle install
       - name: Build and Upload to TestFlight
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec fastlane beta
