@@ -382,7 +382,7 @@ struct PunishmentSheet: View {
                     Text("Tâche manquée")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(AppColors.accentRed)
-                    Text(""\(task.name)" non complété.\nChoisis ta punition.")
+                    Text("\"\(task.name)\" non complété.\nChoisis ta punition.")
                         .font(.system(size: 15))
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

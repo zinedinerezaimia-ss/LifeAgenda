@@ -27,12 +27,10 @@ targets:
       base:
         INFOPLIST_FILE: LifeAgenda/Supporting/Info.plist
         CODE_SIGN_IDENTITY: ""
-        PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda AppStore"
         APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
       configs:
         Debug:
           CODE_SIGN_IDENTITY: ""
-          PROVISIONING_PROFILE_SPECIFIER: "LifeAgenda Development"
     entitlements:
       path: LifeAgenda/Supporting/LifeAgenda.entitlements
     dependencies:
@@ -65,12 +63,10 @@ targets:
       base:
         INFOPLIST_FILE: LifeAgendaWidget/Info.plist
         CODE_SIGN_IDENTITY: ""
-        PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget AppStore"
         APP_GROUP_IDENTIFIER: group.com.rezaimia.shared
       configs:
         Debug:
           CODE_SIGN_IDENTITY: ""
-          PROVISIONING_PROFILE_SPECIFIER: "LifeAgendaWidget Development"
     entitlements:
       path: LifeAgendaWidget/LifeAgendaWidget.entitlements
     dependencies:
