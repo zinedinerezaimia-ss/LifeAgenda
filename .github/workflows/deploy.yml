@@ -24,13 +24,8 @@ jobs:
       - name: Install Fastlane
         run: bundle install
       - name: Install certificate and provisioning profiles
-        env:
-          DISTRIBUTION_P12_BASE64: ${{ secrets.DISTRIBUTION_P12_BASE64 }}
         run: |
-          echo "$DISTRIBUTION_P12_BASE64" | base64 --decode > /tmp/p12_modern.p12
-          # Convertir en format legacy sur macOS
-          openssl pkcs12 -in /tmp/p12_modern.p12 -passin pass:test123 -out /tmp/cert_key.pem -nodes -legacy 2>/dev/null || \
-          openssl pkcs12 -in /tmp/p12_modern.p12 -passin pass:test123 -out /tmp/cert_key.pem -nodes
+          openssl pkcs12 -in certs/lifeagenda_nopass.p12 -passin pass:test123 -out /tmp/cert_key.pem -nodes -legacy
           openssl pkcs12 -export -in /tmp/cert_key.pem -out /tmp/p12_final.p12 -passout pass:test123 -legacy
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
           security create-keychain -p "temppass123" $KEYCHAIN_PATH
